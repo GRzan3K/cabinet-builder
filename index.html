@@ -1,60 +1,85 @@
 <!DOCTYPE html>
-
 <html lang="pl">
 
 <head>
-
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0" >
     
-    <title>Kalkulator materiału</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
 
+    <title>Cabinet Builder</title>
+   
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
+    <main>
 
-    <h1>Kalkulator materiału</h1>
+        <h1>Konstruktor szafek</h1>
+        <form id="cabinet-form">
 
-    <label for="width">
-        Szerokość szafki [mm]
-    </label>
-    <input
-    id="width"
-    type="number">
+            <label for="width">
+                Szerokość szafki [mm]
+            </label>
+            <input 
+            id="width"
+            type="number"
+            min="1"
+            required
+            >
+            
+            <label for="height">
+                Wysokość szafki [mm]
+            </label>
+            <input id="height"
+            id="height"
+            type="number"
+            min="1"
+            required
+            >
 
-    <label for="thickness">
-        Grubość płyty [mm]
-    </label>
-    <input
-    id="thickness"
-    type="number">
+            <label for="depth">
+                Głębokość szafki [mm]
+            </label>
+            <input for="depth"
+            id="depth"
+            type="number"
+            min="1"
+            required
+            >
 
-    <label for="height">
-        Wysokość płyty [mm]
-    </label>
-    <input
-    id="height"
-    type="number">
-    <label for="depth">
-        Głębokość [mm]
-    </label>
-    <input 
-    id="depth"
-    type="number">
+            <label for="shelves">
+                Liczba półek
+            </label>
+            <input id="shelves"
+            id="shelves"
+            type="number"
+            min="0"
+            value="0"
+            required
+            >
 
-    <button id="calculate">
-        Oblicz
-    </button>
+            <button type="submit">
+                Oblicz elementy
+            </button>
 
-    <p id="result"></p>
+
+        </form>
+
+        <section id="result">
+
+            <h2>Lista elementów</h2>
+
+            <p>
+                Wprowadź wymiary szafki i kliknij "Oblicz elementy"
+            </p>
+
+        </section>
+
+    </main>
+
     <script src="app.js"></script>
-
-
-    
-
 </body>
+
 
 </html>
