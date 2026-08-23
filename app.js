@@ -5,7 +5,7 @@ const heightInput = document.getElementById("height");
 const depthInput = document.getElementById("depth");
 const shelvesInput = document.getElementById("shelves");
 
-const result = document.getElementById("results");
+const resultsBody = document.getElementById("results-body");
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -32,17 +32,40 @@ form.addEventListener("submit", function (event) {
     const shelfWidth = insideWidth;
     const shelfDepth = depth - shelfOffset;
 
-    result.innerHTML = `
-    <h2>Lista elementów</h2>
+    let shelfRow = "";
+    if (shelves > 0) {
+        
+        shelfRow = `
+            <tr>
+                <td>Półka</td>
+                <td>${shelves}</td>
+                <td>${shelfWidth} x ${shelfDepth} mm</td>
+            </tr>
+        `;
+    }
 
-    <p>Boki: 2 szt. - ${sideHeight} x ${sideDepth} mm</p>
+    resultsBody.innerHTML = `
+        <tr>
+            <td>Bok</td>
+            <td>2</td>
+            <td>${sideHeight} x ${sideDepth} mm</td>
+        </tr>
 
-    <p>Góra: 1 szt. - ${topWidth} x ${topDepth} mm</p>
+        <tr>
+            <td>Góra</td>
+            <td>1</td>
+            <td>${topWidth} x ${topDepth} mm</td>
+        </tr
 
-    <p>Dół: 1 szt. - ${bottomWidth} x ${bottomDepth} mm</p>
+        <tr>
+            <td>Dół</td>
+            <td>1</td>
+            <td>${bottomWidth} x ${bottomDepth} mm</td>
+        </tr>
 
-    <p>Półki: ${shelves} szt. - ${shelfWidth} x ${shelfDepth} mm</p>
-    
+        ${shelfRow}
+        
     `;
 
 });
+

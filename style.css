@@ -73,3 +73,16 @@ button:hover {
     padding-top: 20px;
     border-top: 1px solid #2c2e2d;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+    font-weight: bold;
+}
