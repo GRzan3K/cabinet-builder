@@ -7,6 +7,7 @@ const shelvesInput = document.getElementById("shelves");
 const shelfOffsetInput = document.getElementById("shelf-offset");
 const thicknessInput = document.getElementById("thickness");
 const backInput = document.getElementById("back");
+const totalAreaElement = document.getElementById("total-area")
 
 const resultsBody = document.getElementById("results-body");
 const errorMessage = document.getElementById("error-message");
@@ -102,8 +103,18 @@ form.addEventListener("submit", function (event) {
         });
     }
 
+
+  
     let rows = "";
+    let totalArea = 0;
     parts.forEach(function (part){
+
+        const partArea =
+            part.length *
+            part.width *
+            part.quantity;
+        
+        totalArea += partArea;
 
         rows += `
             <tr>
@@ -115,7 +126,12 @@ form.addEventListener("submit", function (event) {
 
     });
 
+    const totalAreaM2 = totalArea / 1_000_000
+
    resultsBody.innerHTML = rows;
+
+   totalAreaElement.textContent = 
+        `Łączna powierzchnia materiału: ${totalAreaM2.toFixed(2)} m²`
 
    
 
