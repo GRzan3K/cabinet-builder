@@ -38,7 +38,8 @@ label {
 }
 
 
-input {
+input,
+select {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -47,7 +48,8 @@ input {
 }
 
 
-input:focus {
+input:focus,
+select:focus {
     outline: 2px solid #555555;
 }
 

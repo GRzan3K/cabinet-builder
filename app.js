@@ -4,6 +4,7 @@ const widthInput = document.getElementById("width");
 const heightInput = document.getElementById("height");
 const depthInput = document.getElementById("depth");
 const shelvesInput = document.getElementById("shelves");
+const shelfOffsetInput = document.getElementById("shelf-offset");
 
 const resultsBody = document.getElementById("results-body");
 const errorMessage = document.getElementById("error-message");
@@ -17,10 +18,10 @@ form.addEventListener("submit", function (event) {
     const height = Number(heightInput.value);
     const depth = Number(depthInput.value);
     const shelves = Number(shelvesInput.value);
+    const shelfOffset = Number(shelfOffsetInput.value);
     
     //2. Stałe
     const thickness = 18;
-    const shelfOffset = 20;
 
 
     //3. Sprawdzenia danych
