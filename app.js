@@ -10,13 +10,42 @@ const resultsBody = document.getElementById("results-body");
 form.addEventListener("submit", function (event) {
     event.preventDefault();
     
+    //1. Pobieranie danych
     const width = Number(widthInput.value);
     const height = Number(heightInput.value);
     const depth = Number(depthInput.value);
     const shelves = Number(shelvesInput.value);
     
+    //2. Stałe
     const thickness = 18;
     const shelfOffset = 20;
+
+
+    //3. Sprawdzenia danych
+    if (width <= thickness * 2){
+    alert(`Szerokość szafki musi być większa niz ${thickness * 2} mm.`);
+    return;
+   }
+
+   if (height <= 0){
+    alert("Wysokość szafki musi być większa niz 0 mm.");
+    return;
+   }
+
+   if (depth <= 0){
+    alert("Głębokość szafki musi być większa ni 0 mm.");
+    return;
+   }
+
+   if (shelves > 0 && depth <= shelfOffset){
+    alert(`Głębokość szafki musi być większa niz ${shelfOffset} mm.`);
+    return;
+   }
+
+   if (shelves < 0 || !Number.isInteger(shelves)) {
+    alert("Liczba półek musi być liczbą całkowitą większą lub równą 0.");
+    return;
+   }
 
     const insideWidth = width - thickness * 2;
 
@@ -68,6 +97,8 @@ form.addEventListener("submit", function (event) {
     });
 
    resultsBody.innerHTML = rows;
+
+   
 
 });
 
