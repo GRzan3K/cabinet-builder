@@ -5,6 +5,7 @@ const heightInput = document.getElementById("height");
 const depthInput = document.getElementById("depth");
 const shelvesInput = document.getElementById("shelves");
 const shelfOffsetInput = document.getElementById("shelf-offset");
+const thicknessInput = document.getElementById("thickness");
 
 const resultsBody = document.getElementById("results-body");
 const errorMessage = document.getElementById("error-message");
@@ -19,12 +20,10 @@ form.addEventListener("submit", function (event) {
     const depth = Number(depthInput.value);
     const shelves = Number(shelvesInput.value);
     const shelfOffset = Number(shelfOffsetInput.value);
-    
-    //2. Stałe
-    const thickness = 18;
+    const thickness = Number(thicknessInput.value);
 
 
-    //3. Sprawdzenia danych
+    //2. Sprawdzenia danych
     if (width <= thickness * 2){
         errorMessage.textContent = 
             `Szerokość szafki musi być większa niz ${thickness * 2} mm.`;
