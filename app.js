@@ -6,6 +6,7 @@ const depthInput = document.getElementById("depth");
 const shelvesInput = document.getElementById("shelves");
 const shelfOffsetInput = document.getElementById("shelf-offset");
 const thicknessInput = document.getElementById("thickness");
+const backInput = document.getElementById("back");
 
 const resultsBody = document.getElementById("results-body");
 const errorMessage = document.getElementById("error-message");
@@ -21,6 +22,8 @@ form.addEventListener("submit", function (event) {
     const shelves = Number(shelvesInput.value);
     const shelfOffset = Number(shelfOffsetInput.value);
     const thickness = Number(thicknessInput.value);
+    const hasBack = backInput.checked;
+
 
 
     //2. Sprawdzenia danych
@@ -90,6 +93,15 @@ form.addEventListener("submit", function (event) {
         
     }
     
+    if (hasBack) {
+        parts.push({
+            name: "Plecy",
+            quantity: 1,
+            length: width,
+            width: height
+        });
+    }
+
     let rows = "";
     parts.forEach(function (part){
 
