@@ -20,52 +20,54 @@ form.addEventListener("submit", function (event) {
 
     const insideWidth = width - thickness * 2;
 
-    const sideHeight = height;
-    const sideDepth = depth;
-   
-    const topWidth = insideWidth;
-    const topDepth = depth;
+    const parts = [
+    {
+        name: "Bok",
+        quantity: 2,
+        length: height,
+        width: depth
+    },
 
-    const bottomWidth = insideWidth;
-    const bottomDepth = depth;
+    {
+        name: "Góra",
+        quantity: 1,
+        length: insideWidth,
+        width: depth
+    },
 
-    const shelfWidth = insideWidth;
-    const shelfDepth = depth - shelfOffset;
+    {
+        name: "Dół",
+        quantity: 1,
+        length: insideWidth,
+        width: depth
+    }
+    ];
 
-    let shelfRow = "";
-    if (shelves > 0) {
+    if (shelves > 0){
+
+        parts.push({
+            name: "Półka",
+            quantity: shelves,
+            length: insideWidth,
+            width: depth - shelfOffset
+        });
         
-        shelfRow = `
+    }
+    
+    let rows = "";
+    parts.forEach(function (part){
+
+        rows += `
             <tr>
-                <td>Półka</td>
-                <td>${shelves}</td>
-                <td>${shelfWidth} x ${shelfDepth} mm</td>
+                <td>${part.name}</td>
+                <td>${part.quantity}</td>
+                <td>${part.length} x ${part.width} mm</td>
             </tr>
         `;
-    }
 
-    resultsBody.innerHTML = `
-        <tr>
-            <td>Bok</td>
-            <td>2</td>
-            <td>${sideHeight} x ${sideDepth} mm</td>
-        </tr>
+    });
 
-        <tr>
-            <td>Góra</td>
-            <td>1</td>
-            <td>${topWidth} x ${topDepth} mm</td>
-        </tr
-
-        <tr>
-            <td>Dół</td>
-            <td>1</td>
-            <td>${bottomWidth} x ${bottomDepth} mm</td>
-        </tr>
-
-        ${shelfRow}
-        
-    `;
+   resultsBody.innerHTML = rows;
 
 });
 
