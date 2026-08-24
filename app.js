@@ -6,9 +6,11 @@ const depthInput = document.getElementById("depth");
 const shelvesInput = document.getElementById("shelves");
 
 const resultsBody = document.getElementById("results-body");
+const errorMessage = document.getElementById("error-message");
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
+    errorMessage.textContent = "";
     
     //1. Pobieranie danych
     const width = Number(widthInput.value);
@@ -23,28 +25,33 @@ form.addEventListener("submit", function (event) {
 
     //3. Sprawdzenia danych
     if (width <= thickness * 2){
-    alert(`Szerokość szafki musi być większa niz ${thickness * 2} mm.`);
-    return;
+        errorMessage.textContent = 
+            `Szerokość szafki musi być większa niz ${thickness * 2} mm.`;
+        return;
    }
 
    if (height <= 0){
-    alert("Wysokość szafki musi być większa niz 0 mm.");
-    return;
+        errorMessage.textContent = 
+            "Wysokość szafki musi być większa niz 0 mm.";
+        return;
    }
 
    if (depth <= 0){
-    alert("Głębokość szafki musi być większa ni 0 mm.");
-    return;
+        errorMessage.textContent = 
+            "Głębokość szafki musi być większa ni 0 mm.";
+        return;
    }
 
    if (shelves > 0 && depth <= shelfOffset){
-    alert(`Głębokość szafki musi być większa niz ${shelfOffset} mm.`);
-    return;
+        errorMessage.textContent = 
+            `Głębokość szafki musi być większa niz ${shelfOffset} mm.`;
+        return;
    }
 
    if (shelves < 0 || !Number.isInteger(shelves)) {
-    alert("Liczba półek musi być liczbą całkowitą większą lub równą 0.");
-    return;
+        errorMessage.textContent = 
+            "Liczba półek musi być liczbą całkowitą większą lub równą 0.";
+        return;
    }
 
     const insideWidth = width - thickness * 2;

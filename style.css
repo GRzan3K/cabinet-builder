@@ -86,3 +86,10 @@ td {
     border-bottom: 1px solid #dddddd;
     font-weight: bold;
 }
+
+#error-message {
+    min-height: 20px;
+    margin: 5px 0 0;
+    font-weight: bold;
+    color: #cc2b2b;
+}
