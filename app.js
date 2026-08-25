@@ -173,6 +173,19 @@ form.addEventListener("submit", function (event) {
 
 });
 
+projectList.addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("remove-cabinet")) {
+
+        const index = Number(event.target.dataset.index);
+
+        projectCabinets.splice(index, 1);
+
+        renderProject();
+    }
+
+});
+
 function renderProject() {
 
     let projectHtml = "";
@@ -214,11 +227,18 @@ function renderProject() {
                     ${partsHtml}
                 </ul>
 
+                <button
+                    type="button"
+                    class="remove-cabinet"
+                    data-index="${index}"
+                >
+                    Usuń
+                </button>
+
             </article>
         `;
 
     });
-
     projectList.innerHTML = projectHtml;
 }
 
