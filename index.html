@@ -18,6 +18,16 @@
         <h1>Konstruktor szafek</h1>
         <form id="cabinet-form">
 
+            <label for="cabinet-name">
+                Nazwa szafki
+            </label>
+
+            <input 
+            id="cabinet-name"
+            type="text"
+            placeholder="np. Szafka górna lewa"
+            >
+
             <label for="width">
                 Szerokość szafki [mm]
             </label>
@@ -89,7 +99,7 @@
             <p id="error-message"></p>
 
             <button type="submit">
-                Oblicz elementy
+                Dodaj szafkę do projektu
             </button>
 
 
@@ -115,6 +125,14 @@
 
             <p id="total-area"></p>
 
+        </section>
+
+        <section id="project">
+            <h2>Projekt</h2>
+
+            <div id="project-list">
+                <p>Brak szafek w projekcie.</p>
+            </div>
         </section>
 
     </main>

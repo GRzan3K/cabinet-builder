@@ -7,10 +7,15 @@ const shelvesInput = document.getElementById("shelves");
 const shelfOffsetInput = document.getElementById("shelf-offset");
 const thicknessInput = document.getElementById("thickness");
 const backInput = document.getElementById("back");
-const totalAreaElement = document.getElementById("total-area")
+const totalAreaElement = document.getElementById("total-area");
+const cabinetNameInput = document.getElementById("cabinet-name");
+const projectList = document.getElementById("project-list");
+
 
 const resultsBody = document.getElementById("results-body");
 const errorMessage = document.getElementById("error-message");
+
+const projectCabinets = [];
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -24,6 +29,14 @@ form.addEventListener("submit", function (event) {
     const shelfOffset = Number(shelfOffsetInput.value);
     const thickness = Number(thicknessInput.value);
     const hasBack = backInput.checked;
+    
+    const cabinetName = cabinetNameInput.value.trim();
+
+    if (cabinetName === ""){
+        errorMessage.textContent = 
+            "Podaj nazwe szafki.";
+        return;
+    }
 
 
 
@@ -60,6 +73,7 @@ form.addEventListener("submit", function (event) {
 
     const insideWidth = width - thickness * 2;
 
+
     const parts = [
     {
         name: "Bok",
@@ -83,6 +97,8 @@ form.addEventListener("submit", function (event) {
     }
     ];
 
+    
+
     if (shelves > 0){
 
         parts.push({
@@ -98,10 +114,30 @@ form.addEventListener("submit", function (event) {
         parts.push({
             name: "Plecy",
             quantity: 1,
-            length: width,
-            width: height
+            length: width - 2,
+            width: height - 2
         });
     }
+
+    const cabinet = {
+        name: cabinetName,
+
+        width: width,
+        height: height,
+        depth: depth,
+
+        thickness: thickness,
+        shelfOffset: shelfOffset,
+
+        parts: parts
+    }
+
+    projectCabinets.push(cabinet);
+
+    renderProject();
+
+    cabinetNameInput.value = "";
+    cabinetNameInput.focus();
 
 
   
@@ -136,4 +172,57 @@ form.addEventListener("submit", function (event) {
    
 
 });
+
+function renderProject() {
+
+    let projectHtml = "";
+
+    projectCabinets.forEach(function (cabinet, index) {
+
+        let partsHtml = "";
+
+        cabinet.parts.forEach(function (part) {
+
+            partsHtml += `
+                <li>
+                    ${part.name}:
+                    ${part.quantity} szt. -
+                    ${part.length} x ${part.width} mm
+                </li>
+            `;
+
+        });
+
+
+        projectHtml += `
+            <article class="cabinet-card">
+
+                <h3>
+                    ${index + 1}. ${cabinet.name}
+                </h3>
+
+                <p>
+                    ${cabinet.width}
+                    x
+                    ${cabinet.height}
+                    x
+                    ${cabinet.depth}
+                    mm
+                </p>
+
+                <ul>
+                    ${partsHtml}
+                </ul>
+
+            </article>
+        `;
+
+    });
+
+    projectList.innerHTML = projectHtml;
+}
+
+
+
+
 
